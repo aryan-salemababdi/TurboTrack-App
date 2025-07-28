@@ -6,19 +6,37 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "test": "jest",
+    "cypress:open": "cypress open",
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^1.11.0",
+    "chart.js": "^4.5.0",
+    "framer-motion": "^12.23.11",
+    "lucide-react": "^0.532.0",
+    "next": "15.4.4",
     "react": "19.1.0",
+    "react-chartjs-2": "^5.3.0",
     "react-dom": "19.1.0",
-    "next": "15.4.4"
+    "react-icons": "^5.5.0",
+    "zustand": "^5.0.6"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@tailwindcss/postcss": "^4",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "cypress": "^14.5.3",
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.0.5",
+    "tailwindcss": "^4",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
   }
 }
