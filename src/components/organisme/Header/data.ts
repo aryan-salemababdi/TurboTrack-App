@@ -7,17 +7,17 @@ export const items: ItemsTypes[] = [
     href: "#home",
   },
   {
-    id: 1,
+    id: 2,
     title: "Features",
     href: "#features",
   },
   {
-    id: 1,
+    id: 3,
     title: "Pricing",
     href: "#pricing",
   },
   {
-    id: 1,
+    id: 4,
     title: "Contact",
     href: "#pontact",
   },
