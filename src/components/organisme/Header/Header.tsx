@@ -12,7 +12,6 @@ const Header = () => {
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
   const closeMenu = () => setIsMenuOpen(false);
 
-  // Scroll detection for subtle effect
   useEffect(() => {
     const onScroll = () => {
       setIsScrolled(window.scrollY > 10);

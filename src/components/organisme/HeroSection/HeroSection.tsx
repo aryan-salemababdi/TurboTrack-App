@@ -5,7 +5,6 @@ import { twMerge } from "tailwind-merge";
 const HeroSection = () => {
   return (
     <section className="relative isolate overflow-hidden bg-black text-white min-h-[90vh] flex items-center justify-center px-6 py-24 sm:py-32 lg:px-8">
-      {/* Background Glow Effect */}
       <div
         className="absolute inset-0 -z-10 opacity-30 blur-3xl"
         style={{
@@ -14,11 +13,9 @@ const HeroSection = () => {
         }}
       />
 
-      {/* Grid lines background (subtle) */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(#A3E63511_1px,transparent_1px)] bg-[size:20px_20px]" />
 
       <div className="text-center max-w-2xl">
-        {/* Logo / Hero Title */}
         <h1 className="relative text-center text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-tight mb-8">
           <span className="relative inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-br from-black to-gray-900 rounded-2xl shadow-2xl">
             <span className="text-4xl md:text-5xl animate-bounce drop-shadow-md">
@@ -36,14 +33,12 @@ const HeroSection = () => {
           </span>
         </h1>
 
-        {/* Subtitle */}
         <p className="text-md sm:text-lg md:text-xl text-gray-400 mb-8">
           High-performance load testing engine for developers and teams.
           Simulate real-world traffic, monitor results, and optimize backend
           performance effortlessly.
         </p>
 
-        {/* CTA */}
         <div className="flex justify-center gap-4 flex-wrap">
           <Button
             className={twMerge(
