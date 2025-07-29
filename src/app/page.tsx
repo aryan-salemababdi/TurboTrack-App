@@ -1,11 +1,12 @@
+import LandingPage from "@/components/template/LandingPage/LandingPage";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
 
-        hello world
+        <LandingPage />
 
-    </div>
+    </main>
   );
 }
