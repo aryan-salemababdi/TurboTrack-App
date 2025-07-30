@@ -101,7 +101,7 @@ export default function ContactUsSection() {
             className="w-full font-bold py-3 rounded-lg "
           >
             {status === "idle" && "Send Message"}
-            {status === "success" && "✅ Sent!"}
+            {status === "success" && "Sent!"}
           </Button>
         </motion.form>
       </div>
