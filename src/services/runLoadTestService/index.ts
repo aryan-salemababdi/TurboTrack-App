@@ -8,7 +8,7 @@ export async function runLoadTestService(
   testType: "batch" | "sustained"
 ) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"}/tests/run-test`,
+    `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"}/run-test`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
