@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
         <p>We have successfully received your message and will get back to you as soon as possible.</p>
         <h3>Your message:</h3>
         <p>${message}</p>
-        <p>Best regards,<br>Your Company Team</p>
+        <p>Best regards,<br>Aryan Salemabadi</p>
       `,
     };
 
