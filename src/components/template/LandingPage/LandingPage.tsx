@@ -14,6 +14,11 @@ const WhyTurboTrackSection = dynamic(
   { ssr: false, loading: () => <p>Loading...</p> }
 );
 
+const ContactUsSection = dynamic(
+  () => import("@/components/organisme/ContactUsSection/ContactUsSection"),
+  { ssr: false, loading: () => <p>Loading...</p> }
+)
+
 const LandingPage = () => {
   return (
     <>
@@ -21,6 +26,7 @@ const LandingPage = () => {
       <QuickStart />
       <HowItWorksSection />
       <WhyTurboTrackSection />
+      <ContactUsSection />
     </>
   );
 };
