@@ -2,6 +2,7 @@
 import dynamic from "next/dynamic";
 import HeroSection from "@/components/organisme/HeroSection/HeroSection";
 import HowItWorksSection from "@/components/organisme/HowItWorksSection/HowItWorksSection";
+import ContactUsSection from "@/components/organisme/ContactUsSection/ContactUsSection";
 
 
 const QuickStart = dynamic(
@@ -21,6 +22,7 @@ const LandingPage = () => {
       <QuickStart />
       <HowItWorksSection />
       <WhyTurboTrackSection />
+      <ContactUsSection />
     </>
   );
 };
