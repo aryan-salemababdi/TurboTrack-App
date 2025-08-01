@@ -39,7 +39,7 @@ export async function runLoadTestService(
 }
 
 export const startLoadTest = async (testData: LoadTestData) => {
-  const API_URL = "http://localhost:4000/tests/start";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL ? `${process.env.NEXT_PUBLIC_API_URL}/tests/start` : "http://localhost:4000/tests/start";
 
   try {
     const response = await fetch(API_URL, {
