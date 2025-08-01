@@ -1,10 +1,28 @@
 "use client";
-import { useState } from "react";
-import { runLoadTestService } from "@/services/runLoadTestService";
-import  TestResults  from "../TestResults/TestResults";
+import { useState, useEffect } from "react";
+import io from "socket.io-client";
+import TestResults from "../TestResults/TestResults";
 import TestForm from "../TestForm/TestForm";
+import { startLoadTest } from "@/services/runLoadTestService";
+import ProgressChart from "@/components/molecule/ProgressChart/StepCard";
 
-export default function QuickStartPage() {
+interface ProgressData {
+  requestsMade: number;
+  success: number;
+  failed: number;
+  totalRequests: number;
+}
+
+interface FinalResultData {
+  totalRequests: number;
+  success: number;
+  failed: number;
+  avgLatency: number;
+  RPS: number;
+  durationMs: number;
+}
+
+const QuickStartPage = () => {
   const [url, setUrl] = useState("");
   const [requests, setRequests] = useState(100);
   const [concurrency, setConcurrency] = useState(10);
@@ -12,24 +30,52 @@ export default function QuickStartPage() {
   const [testType, setTestType] = useState<"batch" | "sustained">("batch");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
+  const [jobId, setJobId] = useState(null);
+  const [progress, setProgress] = useState<ProgressData | null>(null);
+  const [progressHistory, setProgressHistory] = useState<ProgressData[]>([]);
+
+  useEffect(() => {
+    if (!jobId) return;
+
+    const socket = io(process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000");
+
+    socket.on("connect", () => {
+      console.log("WebSocket Connected!");
+      socket.emit("joinRoom", jobId);
+    });
+
+    socket.on("progress", (data: ProgressData) => {
+      setProgress(data);
+      setProgressHistory((prevHistory) => [...prevHistory, data]);
+    });
+
+    socket.on("finalResult", (data: FinalResultData) => {
+      setResult(data);
+      setLoading(false);
+      setJobId(null);
+      socket.disconnect();
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [jobId]);
 
   const handleRunTest = async () => {
+    setProgressHistory([]);
     if (!url) return alert("Please enter a valid URL");
     setLoading(true);
     setResult(null);
+    setProgress(null);
+
     try {
-      const data = await runLoadTestService(
-        url,
-        requests,
-        concurrency,
-        method,
-        testType
-      );
-      setResult(data);
-    } catch {
-      alert("Error running test");
+      const testData = { url, requests, concurrency, method, testType };
+      const response = await startLoadTest(testData);
+      setJobId(response.jobId);
+    } catch (error) {
+      alert("Error starting the test. Please check the console.");
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
@@ -43,22 +89,30 @@ export default function QuickStartPage() {
             Instantly measure your API's performance and reliability.
           </p>
         </div>
+
         <TestForm
           url={url}
-          requests={requests}
-          concurrency={concurrency}
-          method={method}
-          testType={testType}
           setUrl={setUrl}
+          requests={requests}
           setRequests={setRequests}
+          concurrency={concurrency}
           setConcurrency={setConcurrency}
+          method={method}
           setMethod={setMethod}
+          testType={testType}
           setTestType={setTestType}
           handleRunTest={handleRunTest}
           loading={loading}
         />
+
+        {progressHistory.length > 0 && (
+          <ProgressChart progressHistory={progressHistory} />
+        )}
+
         {!loading && result && <TestResults result={result} />}
       </div>
     </section>
   );
-}
+};
+
+export default QuickStartPage;
