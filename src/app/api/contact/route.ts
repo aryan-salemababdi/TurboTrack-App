@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     });
 
     const mailOptions = {
-      from: `"${name}" <${process.env.GMAIL_USER}>`,
+      from: `"${name}" <${email}>`,
       to: process.env.COMPANY_EMAIL,
       subject: `New Contact Form Message from ${name}`,
       replyTo: email,
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     };
 
     const confirmationMailOptions = {
-      from: `"Your Company Name" <${process.env.GMAIL_USER}>`,
+      from: `"TurboTrack <${process.env.GMAIL_USER}>`,
       to: email,
       subject: "We've Received Your Message",
       html: `
@@ -59,18 +59,19 @@ export async function POST(request: NextRequest) {
         <p>We have successfully received your message and will get back to you as soon as possible.</p>
         <h3>Your message:</h3>
         <p>${message}</p>
-        <p>Best regards,<br>Aryan Salemabadi</p>
+        <p>Best regards,<br>TurboTrack Support Team</p>
       `,
     };
 
-    await transporter.sendMail(mailOptions);
-    await transporter.sendMail(confirmationMailOptions);
+    await Promise.all([
+      transporter.sendMail(mailOptions),
+      transporter.sendMail(confirmationMailOptions),
+    ]);
 
     return NextResponse.json(
       { success: true, message: "Your message has been sent successfully." },
       { status: 200 }
     );
-
   } catch (error) {
     console.error("API Error:", error);
     return NextResponse.json(
