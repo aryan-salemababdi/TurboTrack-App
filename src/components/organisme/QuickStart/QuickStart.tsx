@@ -39,7 +39,9 @@ const QuickStartPage = () => {
 
     const socket = io(
       process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000"
-    );
+    , {
+      transports: ["websocket"]
+    });
 
     socket.on("connect", () => {
       console.log("WebSocket Connected!");
