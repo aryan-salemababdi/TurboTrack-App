@@ -69,9 +69,17 @@ const TestResults = ({ result }: { result: any }) => {
         <StatCard
           icon="⏱️"
           title="Avg Latency"
-          value={`${result.avgLatency.toFixed(2)} ms`}
+          value={`${
+            result.avgLatency !== undefined
+              ? result.avgLatency.toFixed(2)
+              : "N/A"
+          } ms`}
         />
-        <StatCard icon="⚡" title="RPS" value={result.RPS.toFixed(2)} />
+        <StatCard
+          icon="⚡"
+          title="RPS"
+          value={typeof result.RPS === "number" ? result.RPS.toFixed(2) : "N/A"}
+        />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <div className="lg:col-span-2 bg-white p-6 rounded-xl shadow-md">
