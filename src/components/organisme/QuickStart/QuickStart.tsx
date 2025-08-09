@@ -37,10 +37,13 @@ const QuickStartPage = () => {
   useEffect(() => {
     if (!jobId) return;
 
-    const socket = io(process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000");
+    const socket = io(
+      process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000"
+    );
 
     socket.on("connect", () => {
       console.log("WebSocket Connected!");
+      console.log("Joining room:", jobId);
       socket.emit("joinRoom", jobId);
     });
 
