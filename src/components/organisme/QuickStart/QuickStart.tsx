@@ -55,8 +55,6 @@ const QuickStartPage = () => {
       console.log(progressHistory)
     });
 
-          console.log(progressHistory)
-
     socket.on("finalResult", (data: FinalResultData) => {
       setResult(data);
       setLoading(false);
