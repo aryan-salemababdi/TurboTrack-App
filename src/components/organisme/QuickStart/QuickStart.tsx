@@ -52,7 +52,10 @@ const QuickStartPage = () => {
     socket.on("progress", (data: ProgressData) => {
       setProgress(data);
       setProgressHistory((prevHistory) => [...prevHistory, data]);
+      console.log(progressHistory)
     });
+
+          console.log(progressHistory)
 
     socket.on("finalResult", (data: FinalResultData) => {
       setResult(data);

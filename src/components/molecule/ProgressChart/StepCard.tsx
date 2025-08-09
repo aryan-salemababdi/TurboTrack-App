@@ -70,6 +70,8 @@ const ProgressChart = ({ progressHistory }: any) => {
     },
   };
 
+  console.log(progressHistory)
+
   return (
     <div className="mt-8 p-4 bg-white rounded-lg shadow-md">
       <Line options={options} data={chartData} />
