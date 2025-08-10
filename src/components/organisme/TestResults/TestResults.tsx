@@ -11,6 +11,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import AnalysisCard from "@/components/molecule/AnalysisCard/AnalysisCard";
 
 ChartJS.register(
   ArcElement,
@@ -89,10 +90,20 @@ const TestResults = ({ result }: { result: any }) => {
           <Bar data={performanceChartData} options={barOptions} />
         </div>
       </div>
+
+      {result.analysis && <AnalysisCard analysisText={result.analysis} />}
+
       <div className="mt-8 bg-gray-900 text-green-400 font-mono rounded-xl p-6 shadow-lg overflow-auto">
         <h3 className="text-lg font-bold mb-4 text-white">Raw JSON Response</h3>
         <pre className="whitespace-pre-wrap text-sm">
-          {JSON.stringify(result, null, 2)}
+          {JSON.stringify(
+            (() => {
+              const { analysis, ...rest } = result || {};
+              return rest;
+            })(),
+            null,
+            2
+          )}
         </pre>
       </div>
     </div>
