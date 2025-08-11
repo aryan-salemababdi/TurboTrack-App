@@ -1,6 +1,5 @@
 "use client";
-
-import React from "react";
+import { NextPage } from "next";
 
 type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
   label?: string;
@@ -8,7 +7,7 @@ type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement> & {
   id?: string;
 };
 
-const Select = ({ label, options, id, ...props }: SelectProps) => {
+const Select: NextPage<SelectProps> = ({ label, options, id, ...props }) => {
   const selectId = id || `select-${Math.random().toString(36).substr(2, 9)}`;
 
   return (

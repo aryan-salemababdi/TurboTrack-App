@@ -1,10 +1,11 @@
 "use client";
-
+import { NextPage } from "next";
 import { Input } from "@/components/atom/Input/Input";
 import  Select  from "@/components/atom/Select/Select";
 import { Button } from "@/components/atom/Button/Button";
 
-type Props = {
+
+interface TestFormProps {
   url: string;
   requests: number;
   concurrency: number;
@@ -19,7 +20,7 @@ type Props = {
   loading: boolean;
 };
 
-  const TestForm = ({
+  const TestForm: NextPage<TestFormProps> = ({
   url,
   requests,
   concurrency,
@@ -32,7 +33,7 @@ type Props = {
   setTestType,
   handleRunTest,
   loading,
-}: Props) => {
+}) => {
   return (
     <div className="bg-white border border-gray-200 shadow-lg rounded-2xl p-6 md:p-8">
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">

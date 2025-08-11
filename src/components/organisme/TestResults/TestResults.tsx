@@ -12,6 +12,7 @@ import {
   Legend,
 } from "chart.js";
 import AnalysisCard from "@/components/molecule/AnalysisCard/AnalysisCard";
+import { NextPage } from "next";
 
 ChartJS.register(
   ArcElement,
@@ -23,7 +24,7 @@ ChartJS.register(
   Legend
 );
 
-const TestResults = ({ result }: { result: any }) => {
+const TestResults: NextPage<any> = ({ result }) => {
   const successFailChartData = {
     labels: ["Successful", "Failed"],
     datasets: [
