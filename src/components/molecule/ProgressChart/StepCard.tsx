@@ -1,4 +1,5 @@
 "use client";
+import { NextPage } from "next";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -11,6 +12,7 @@ import {
   Legend,
 } from "chart.js";
 
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -21,7 +23,7 @@ ChartJS.register(
   Legend
 );
 
-const ProgressChart = ({ progressHistory }: any) => {
+const ProgressChart: NextPage<any> = ({ progressHistory }) => {
   const chartData = {
     labels: progressHistory.map((p: any) => p.requestsMade),
     datasets: [

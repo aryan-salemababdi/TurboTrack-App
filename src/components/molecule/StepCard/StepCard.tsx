@@ -1,4 +1,5 @@
 "use client";
+import { NextPage } from "next";
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
 
@@ -11,14 +12,14 @@ interface StepCardProps {
   delay?: number;
 }
 
-export const StepCard = ({
+export const StepCard: NextPage<StepCardProps> = ({
   stepNumber,
   icon,
   title,
   description,
   color,
   delay = 0,
-}: StepCardProps) => {
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
